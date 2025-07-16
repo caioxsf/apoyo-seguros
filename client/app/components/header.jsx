@@ -22,10 +22,10 @@ export default function Header() {
   };
 
   return (
-    <header className="bg-[#FFED00] h-[90px] flex justify-between items-center px-12">
+    <header className="bg-[#f1ea13] h-[90px] flex justify-between items-center px-12">
       {/* Logo */}
       <Image
-        src="/img/logo.png"
+        src="/img/logo.jpg"
         alt="Logo"
         width={110}
         height={110}
@@ -76,7 +76,7 @@ export default function Header() {
         <div className="fixed inset-0 bg-black/40 z-50 flex">
           <div
             className={`
-              bg-[#FFED00] w-72 h-full p-3 flex flex-col gap-4 shadow-lg
+              bg-[#f1ea13] w-72 h-full p-3 flex flex-col gap-4 shadow-lg
               transform transition-transform duration-400
               ${mobileOpen ? "translate-x-0" : "-translate-x-full"}
             `}
