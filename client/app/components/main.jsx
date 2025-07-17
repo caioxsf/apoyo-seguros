@@ -6,7 +6,7 @@ export default function Main() {
     return (
         <main className="bg-white">
             {/* Banner com imagem e degradê azul */}
-            <div className="relative w-full h-[400px] sm:h-[500px] md:h-[700px] lg:h-[800px] overflow-hidden">
+            <div className="relative w-full h-[650px] sm:h-[500px] md:h-[700px] lg:h-[800px] overflow-hidden">
                 <Image
                     src="/img/cover.png"
                     alt="Main Image"
