@@ -4,15 +4,18 @@ import Image from "next/image";
 import Link from "next/link";
 import { Menu, X } from "lucide-react";
 import { useState } from "react";
+import Agendamento from "./agendamento";
+import { ArrowRight } from "lucide-react";
 
 export default function Header() {
+  const [open, setOpen] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
   const [showMenu, setShowMenu] = useState(false);
 
- 
+
   const openMenu = () => {
     setShowMenu(true);
-    setTimeout(() => setMobileOpen(true), 10); 
+    setTimeout(() => setMobileOpen(true), 10);
   };
 
 
@@ -22,7 +25,7 @@ export default function Header() {
   };
 
   return (
-    <header className="bg-[#f1ea13] h-[90px] flex justify-between items-center px-12">
+    <header className="bg-[#f1ea13] w-full fixed z-50 h-[90px] flex justify-between items-center px-12">
       {/* Logo */}
       <Image
         src="/img/logo.jpg"
@@ -35,30 +38,36 @@ export default function Header() {
       {/* Menu Desktop */}
       <ul className="hidden md:flex flex-row items-center gap-5 font-semibold text-blue-950">
         <li>
-          <Link
-            href="/"
+          <button
+            onClick={() => {
+              document.getElementById('servicos')?.scrollIntoView({ behavior: 'smooth' });
+            }}
             className="border-b-2 border-transparent hover:border-blue-950 transition-all duration-700"
           >
             NOSSOS SERVIÇOS
-          </Link>
+          </button>
         </li>
         <li>
-          <Link
-            href="/"
+          <button
+            onClick={() => {
+              document.getElementById('sobre')?.scrollIntoView({ behavior: 'smooth' });
+            }}
             className="border-b-2 border-transparent hover:border-blue-950 transition-all duration-700"
           >
             SOBRE NÓS
-          </Link>
+          </button>
         </li>
         <li>
-          <Link
-            href="https://google.com"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="border border-blue-950 p-3 rounded-lg hover:bg-blue-950 hover:text-[#FFED00] transition-all duration-500 cursor-pointer"
-          >
-            FAÇA SEU AGENDAMENTO
-          </Link>
+          <>
+            <button
+              onClick={() => setOpen(true)}
+              className="border border-blue-950 p-3 rounded-lg hover:bg-blue-950 hover:text-[#FFED00] transition-all duration-500 cursor-pointer"
+            >
+              FAÇA SEU AGENDAMENTO
+            </button>
+
+            <Agendamento open={open} onClose={() => setOpen(false)} />
+          </>
         </li>
       </ul>
 
@@ -81,7 +90,7 @@ export default function Header() {
               ${mobileOpen ? "translate-x-0" : "-translate-x-full"}
             `}
           >
-            
+
             <button
               className="self-end mb-4"
               onClick={closeMenu}
@@ -90,30 +99,28 @@ export default function Header() {
               <X size={32} className="text-blue-950" />
             </button>
 
-            <Link
-              href="/"
-              className="border-b-2 border-transparent hover:border-blue-950 transition-all duration-700 text-blue-950 font-semibold"
-              onClick={closeMenu}
+            <button
+              className="border-b-2 border-transparent hover:border-blue-950 transition-all duration-700 text-blue-950 font-semibold text-left"
+              onClick={() => {
+                document.getElementById('servicos')?.scrollIntoView({ behavior: 'smooth' });
+                closeMenu();
+              }}
             >
               NOSSOS SERVIÇOS
-            </Link>
-            <Link
-              href="/"
-              className="border-b-2 border-transparent hover:border-blue-950 transition-all duration-700 text-blue-950 font-semibold"
-              onClick={closeMenu}
+            </button>
+
+            <button
+              className="border-b-2 border-transparent hover:border-blue-950 transition-all duration-700 text-blue-950 font-semibold text-left"
+              onClick={() => {
+                document.getElementById('sobre')?.scrollIntoView({ behavior: 'smooth' });
+                closeMenu();
+              }}
             >
               SOBRE NÓS
-            </Link>
-            <Link
-              href="https://google.com"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="rounded-lgx cursor-pointer text-blue-950 font-semibold"
-              onClick={closeMenu}
-            >
-              FAÇA SEU AGENDAMENTO
-            </Link>
+            </button>
+
           </div>
+
           {/* Clica fora do menu para fechar */}
           <div className="flex-1" onClick={closeMenu} />
         </div>
