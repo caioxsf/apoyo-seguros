@@ -1,0 +1,30 @@
+{
+  "name": "apoyo-seguros",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "swagger": "node swagger.js",
+    "start": "node swagger.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/caioxsf/apoyo-seguros.git"
+  },
+  "author": "caio nobile",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/caioxsf/apoyo-seguros/issues"
+  },
+  "homepage": "https://github.com/caioxsf/apoyo-seguros#readme",
+  "description": "",
+  "dependencies": {
+    "bcryptjs": "^3.0.2",
+    "cors": "^2.8.5",
+    "dotenv": "^17.2.0",
+    "express": "^5.1.0",
+    "jsonwebtoken": "^9.0.2",
+    "mysql2": "^3.14.2",
+    "swagger-autogen": "^2.23.7",
+    "swagger-ui-express": "^5.0.1"
+  }
+}
