@@ -1,11 +1,20 @@
+'use client'
+import { useState, useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
+import Agendamento from "./agendamento";
+import AOS from 'aos';
+import 'aos/dist/aos.css';
 
 export default function About() {
+    useEffect(() => {
+        AOS.init({ duration: 800 });
+      }, []);
+    const [open, setOpen] = useState(false);
     return (
         <div>
-            <div className="relative w-full h-[650px] sm:h-[600px] md:h-[700px] lg:h-[650px] overflow-hidden flex justify-center">
+            <div className="relative w-full h-[650px] sm:h-[600px] md:h-[700px] lg:h-[650px] overflow-hidden flex justify-center" >
                 <Image
                     src="/img/about.png"
                     alt="Main Image"
@@ -33,7 +42,7 @@ export default function About() {
                     <div className="lg:w-2/3 flex flex-col text-white space-y-8">
                         {/* Sobre Nós */}
                         <div className="space-y-4">
-                            <h1 className="font-bold text-4xl lg:text-5xl xl:text-6xl text-yellow-200 tracking-wide">
+                            <h1 data-aos="fade-right" className="font-bold text-4xl lg:text-5xl xl:text-6xl text-yellow-200 tracking-wide">
                                 SOBRE NÓS
                             </h1>
                             <p className="text-gray-100 leading-relaxed text-base lg:text-lg font-light">
@@ -43,7 +52,7 @@ export default function About() {
 
                         {/* Nossos Gestores */}
                         <div className="space-y-4">
-                            <h2 className="font-bold text-3xl lg:text-4xl xl:text-5xl text-yellow-200 tracking-wide">
+                            <h2 data-aos="fade-right" className="font-bold text-3xl lg:text-4xl xl:text-5xl text-yellow-200 tracking-wide">
                                 NOSSOS GESTORES
                             </h2>
                             <p className="text-gray-100 leading-relaxed text-base lg:text-lg font-light">
@@ -53,18 +62,21 @@ export default function About() {
                                 Solicite-nos uma visita sem compromisso nas regiões de <span className="font-bold text-yellow-200">Presidente Prudente, Araçatuba, Assis e Marília.</span>
                             </p>
 
-                            <Link
-                                href="https://google.com"
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                className="flex items-center justify-center gap-2 text-yellow-200 font-semibold bg-transparent border border-yellow-200 pointer hover:bg-blue-950 hover:text-[#ffee00e1] hover:border-blue-950
+                            <>
+                                <button
+                                data-aos="fade-right"
+                                    onClick={() => setOpen(true)}
+                                    className="flex w-full items-center justify-center gap-2 text-yellow-200 font-semibold bg-transparent border border-yellow-200 pointer hover:bg-blue-950 hover:text-[#ffee00e1] hover:border-blue-950
                                 px-3 py-2 sm:px-5 sm:py-3 
                                 text-sm sm:text-base 
                                 rounded-sm transition"
-                            >
-                                Faça seu agendamento
-                                <ArrowRight className="w-4" />
-                            </Link>
+                                >
+                                    Faça seu agendamento
+                                    <ArrowRight className="w-4" />
+                                </button>
+
+                                <Agendamento open={open} onClose={() => setOpen(false)} />
+                            </>
                         </div>
 
                         {/* Regiões */}
